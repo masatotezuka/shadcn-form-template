@@ -1,17 +1,10 @@
 "use client"
-import { Input } from "@/components/ui/input"
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormMessage,
-  FormLabel,
-  FormItem,
-} from "@/components/ui/form"
+import { Form } from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
+import { FormInput } from "@/components/form/form-input"
 
 const FormSchema = z.object({
   email: z.string().email({
@@ -49,34 +42,17 @@ export default function FormPage() {
         onSubmit={onSubmit}
         className="grid grid-cols-1 gap-4 max-w-sm mx-auto mt-6"
       >
-        <FormField
+        <FormInput
           control={form.control}
-          name={"email"}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>メールアドレス</FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  placeholder="メールアドレスを入力してください"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          name="email"
+          label="メールアドレス"
+          placeholder="メールアドレスを入力してください"
         />
-        <FormField
+        <FormInput
           control={form.control}
-          name={"password"}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>パスワード</FormLabel>
-              <FormControl>
-                <Input {...field} placeholder="パスワードを入力してください" />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          name="password"
+          label="パスワード"
+          placeholder="パスワードを入力してください"
         />
         <Button type="submit">送信</Button>
       </form>
